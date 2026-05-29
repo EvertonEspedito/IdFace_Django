@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        Dashboard
+    </title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-100">
+
+<div class="container mx-auto p-8">
+
+    <h1 class="text-4xl font-bold mb-8">
+        Sistema Facial
+    </h1>
+
+    <div class="grid grid-cols-2 gap-6 mb-8">
+
+        <div class="bg-white p-6 rounded-xl shadow">
+
+            <h2 class="text-xl font-bold">
+                Pessoas cadastradas
+            </h2>
+
+            <p class="text-4xl mt-4">
+                {{ totalPessoas }}
+            </p>
+
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow">
+
+            <h2 class="text-xl font-bold">
+                Presenças hoje
+            </h2>
+
+            <p class="text-4xl mt-4">
+                {{ totalHoje }}
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow">
+
+        <h2 class="text-2xl font-bold mb-4">
+
+            Últimas presenças
+
+        </h2>
+
+        <table class="w-full">
+
+            <thead>
+
+                <tr class="border-b">
+
+                    <th class="text-left p-2">
+                        Nome
+                    </th>
+
+                    <th class="text-left p-2">
+                        Cargo
+                    </th>
+
+                    <th class="text-left p-2">
+                        Horário
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for presenca in ultimasPresencas %}
+
+                <tr class="border-b">
+
+                    <td class="p-2">
+
+                        {{ presenca.pessoa.nome }}
+
+                    </td>
+
+                    <td class="p-2">
+
+                        {{ presenca.pessoa.cargo }}
+
+                    </td>
+
+                    <td class="p-2">
+
+                        {{ presenca.data_hora }}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

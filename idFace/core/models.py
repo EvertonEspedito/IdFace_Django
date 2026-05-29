@@ -28,6 +28,12 @@ class Pessoa(models.Model):
     foto = models.ImageField(
         upload_to='rostos/'
     )
+    
+    # embedding facial
+    embedding = models.JSONField(
+        null=True,
+        blank=True
+    )
 
     criado_em = models.DateTimeField(
         auto_now_add=True
@@ -36,3 +42,18 @@ class Pessoa(models.Model):
     def __str__(self):
 
         return self.nome
+    
+class Presenca(models.Model):
+
+    pessoa = models.ForeignKey(
+        Pessoa,
+        on_delete=models.CASCADE
+    )
+
+    data_hora = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def __str__(self):
+
+        return f"{self.pessoa.nome} - {self.data_hora}"
