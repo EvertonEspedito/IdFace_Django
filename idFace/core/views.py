@@ -41,3 +41,11 @@ def dashboard(request):
         'dashboard.html',
         contexto
     )
+def login(request):
+    return render(request, 'login.html')
+
+def cadastro(request):
+    return render(request, 'cadastro.html')
+
+def cadastro_aluno(request):
+    return render(request, 'cadastro_aluno.html')
