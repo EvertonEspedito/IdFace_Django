@@ -1,0 +1,166 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+}
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+/* MENU LATERAL */
+
+.sidebar{
+    width:260px;
+    background:linear-gradient(180deg,#242424,#111);
+    color:white;
+    padding:40px 25px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.saldo{
+    background:#4c008b;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:40px;
+}
+
+.saldo h3{
+    margin-top:10px;
+    font-size:30px;
+}
+
+.menu h4,
+.usuario h4{
+    margin-bottom:20px;
+    border-bottom:1px solid #fff;
+    padding-bottom:10px;
+}
+
+.menu a,
+.usuario a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    margin-bottom:18px;
+}
+
+.menu i,
+.usuario i{
+    width:25px;
+}
+
+.usuario{
+    margin-top:80px;
+}
+
+/* CONTEÚDO */
+
+.content{
+    flex:1;
+    padding:30px;
+}
+
+/* TOPO */
+
+header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:30px;
+}
+
+.search-box{
+    width:350px;
+    position:relative;
+}
+
+.search-box input{
+    width:100%;
+    padding:12px 40px 12px 15px;
+    border:none;
+    border-radius:30px;
+    background:#e5e5e5;
+}
+
+.search-box i{
+    position:absolute;
+    right:15px;
+    top:13px;
+}
+
+.top-icons{
+    display:flex;
+    gap:15px;
+    font-size:22px;
+}
+
+.admin{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:bold;
+}
+
+.admin i{
+    font-size:30px;
+    color:#bbb;
+}
+
+/* GRÁFICO */
+
+.grafico{
+    background:linear-gradient(90deg,#202020,#2d2d2d);
+    border-radius:15px;
+    padding:20px;
+    color:white;
+    margin-bottom:25px;
+}
+
+.grafico h3{
+    margin-bottom:20px;
+}
+
+.grafico-area{
+    height:220px;
+    border-top:1px solid #555;
+    border-bottom:1px solid #555;
+}
+
+/* RESUMO */
+
+.resumo{
+    background:linear-gradient(90deg,#202020,#2d2d2d);
+    border-radius:15px;
+    padding:20px;
+    color:white;
+}
+
+.cards{
+    margin-top:20px;
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    color:black;
+    border-radius:12px;
+    padding:20px;
+}
+
+.card h2{
+    margin-bottom:8px;
+}
