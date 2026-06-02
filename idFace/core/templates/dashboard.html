@@ -1,117 +1,117 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-
     <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
 
-    <title>
-        Dashboard
-    </title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <!-- Icons -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+<body>
 
-<body class="bg-gray-100">
+<div class="dashboard">
 
-<div class="container mx-auto p-8">
+    <!-- MENU -->
+    <aside class="sidebar">
 
-    <h1 class="text-4xl font-bold mb-8">
-        Sistema Facial
-    </h1>
+        <h2>DASHBOARD</h2>
 
-    <div class="grid grid-cols-2 gap-6 mb-8">
-
-        <div class="bg-white p-6 rounded-xl shadow">
-
-            <h2 class="text-xl font-bold">
-                Pessoas cadastradas
-            </h2>
-
-            <p class="text-4xl mt-4">
-                {{ totalPessoas }}
-            </p>
-
+        <div class="saldo">
+            <span>Balance</span>
+            <h3>1000</h3>
         </div>
 
-        <div class="bg-white p-6 rounded-xl shadow">
+        <div class="menu">
+            <h4>Menu</h4>
 
-            <h2 class="text-xl font-bold">
-                Presenças hoje
-            </h2>
+            <a href="#"><i class="fa-solid fa-grip"></i> Cadastro de alunos</a>
 
-            <p class="text-4xl mt-4">
-                {{ totalHoje }}
-            </p>
+            <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Relatórios</a>
 
+            <a href="#"><i class="fa-solid fa-wallet"></i> Histórico</a>
+
+            <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
         </div>
 
-    </div>
+        <div class="usuario">
+            <h4>xxxxxxxxxx</h4>
 
-    <div class="bg-white p-6 rounded-xl shadow">
+            <a href="#"><i class="fa-regular fa-circle-question"></i> Dúvida/Suporte</a>
 
-        <h2 class="text-2xl font-bold mb-4">
+            <a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</a>
+        </div>
 
-            Últimas presenças
+    </aside>
 
-        </h2>
+    <!-- CONTEÚDO -->
+    <main class="content">
 
-        <table class="w-full">
+        <header>
 
-            <thead>
+            <div class="search-box">
+                <input type="text" placeholder="Pesquisar aluno, matrícula...">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
 
-                <tr class="border-b">
+            <div class="top-icons">
+                <i class="fa-solid fa-bell"></i>
+                <i class="fa-solid fa-comment-dots"></i>
+            </div>
 
-                    <th class="text-left p-2">
-                        Nome
-                    </th>
+            <div class="admin">
+                <span>Administrador</span>
+                <i class="fa-solid fa-user"></i>
+            </div>
 
-                    <th class="text-left p-2">
-                        Cargo
-                    </th>
+        </header>
 
-                    <th class="text-left p-2">
-                        Horário
-                    </th>
+        <!-- GRÁFICO -->
+        <section class="grafico">
 
-                </tr>
+            <h3>ALUNOS CADASTRADOS</h3>
 
-            </thead>
+            <div class="grafico-area">
 
-            <tbody>
+            </div>
 
-                {% for presenca in ultimasPresencas %}
+        </section>
 
-                <tr class="border-b">
+        <!-- RESUMO -->
+        <section class="resumo">
 
-                    <td class="p-2">
+            <div class="titulo">
+                <h3>RESUMO ACADÊMICO</h3>
+            </div>
 
-                        {{ presenca.pessoa.nome }}
+            <div class="cards">
 
-                    </td>
+                <div class="card">
+                    <h2>ADS</h2>
+                    <p>120 alunos</p>
+                </div>
 
-                    <td class="p-2">
+                <div class="card">
+                    <h2>Informática</h2>
+                    <p>120 alunos</p>
+                </div>
 
-                        {{ presenca.pessoa.cargo }}
+                <div class="card">
+                    <h2>Ensino Médio</h2>
+                    <p>120 alunos</p>
+                </div>
 
-                    </td>
+                <div class="card">
+                    <h2>Visitantes</h2>
+                    <p>120 alunos</p>
+                </div>
 
-                    <td class="p-2">
+            </div>
 
-                        {{ presenca.data_hora }}
+        </section>
 
-                    </td>
-
-                </tr>
-
-                {% endfor %}
-
-            </tbody>
-
-        </table>
-
-    </div>
+    </main>
 
 </div>
 
