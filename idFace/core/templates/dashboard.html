@@ -1,119 +1,120 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css">
+    {% load static %}
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 
-    <!-- Icons -->
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-<body>
+        <!-- Icons -->
+        <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    </head>
+    <body>
 
-<div class="dashboard">
+    <div class="dashboard">
 
-    <!-- MENU -->
-    <aside class="sidebar">
+        <!-- MENU -->
+        <aside class="sidebar">
 
-        <h2>DASHBOARD</h2>
+            <h2>DASHBOARD</h2>
 
-        <div class="saldo">
-            <span>Balance</span>
-            <h3>1000</h3>
-        </div>
-
-        <div class="menu">
-            <h4>Menu</h4>
-
-            <a href="#"><i class="fa-solid fa-grip"></i> Cadastro de alunos</a>
-
-            <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Relatórios</a>
-
-            <a href="#"><i class="fa-solid fa-wallet"></i> Histórico</a>
-
-            <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-        </div>
-
-        <div class="usuario">
-            <h4>xxxxxxxxxx</h4>
-
-            <a href="#"><i class="fa-regular fa-circle-question"></i> Dúvida/Suporte</a>
-
-            <a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</a>
-        </div>
-
-    </aside>
-
-    <!-- CONTEÚDO -->
-    <main class="content">
-
-        <header>
-
-            <div class="search-box">
-                <input type="text" placeholder="Pesquisar aluno, matrícula...">
-                <i class="fa-solid fa-magnifying-glass"></i>
+            <div class="saldo">
+                <span>Balance</span>
+                <h3>1000</h3>
             </div>
 
-            <div class="top-icons">
-                <i class="fa-solid fa-bell"></i>
-                <i class="fa-solid fa-comment-dots"></i>
+            <div class="menu">
+                <h4>Menu</h4>
+
+                <a href="#"><i class="fa-solid fa-grip"></i> Cadastro de alunos</a>
+
+                <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Relatórios</a>
+
+                <a href="#"><i class="fa-solid fa-wallet"></i> Histórico</a>
+
+                <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
             </div>
 
-            <div class="admin">
-                <span>Administrador</span>
-                <i class="fa-solid fa-user"></i>
+            <div class="usuario">
+                <h4>xxxxxxxxxx</h4>
+
+                <a href="#"><i class="fa-regular fa-circle-question"></i> Dúvida/Suporte</a>
+
+                <a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</a>
             </div>
 
-        </header>
+        </aside>
 
-        <!-- GRÁFICO -->
-        <section class="grafico">
+        <!-- CONTEÚDO -->
+        <main class="content">
 
-            <h3>ALUNOS CADASTRADOS</h3>
+            <header>
 
-            <div class="grafico-area">
-
-            </div>
-
-        </section>
-
-        <!-- RESUMO -->
-        <section class="resumo">
-
-            <div class="titulo">
-                <h3>RESUMO ACADÊMICO</h3>
-            </div>
-
-            <div class="cards">
-
-                <div class="card">
-                    <h2>ADS</h2>
-                    <p>120 alunos</p>
+                <div class="search-box">
+                    <input type="text" placeholder="Pesquisar aluno, matrícula...">
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
 
-                <div class="card">
-                    <h2>Informática</h2>
-                    <p>120 alunos</p>
+                <div class="top-icons">
+                    <i class="fa-solid fa-bell"></i>
+                    <i class="fa-solid fa-comment-dots"></i>
                 </div>
 
-                <div class="card">
-                    <h2>Ensino Médio</h2>
-                    <p>120 alunos</p>
+                <div class="admin">
+                    <span>Administrador</span>
+                    <i class="fa-solid fa-user"></i>
                 </div>
 
-                <div class="card">
-                    <h2>Visitantes</h2>
-                    <p>120 alunos</p>
+            </header>
+
+            <!-- GRÁFICO -->
+            <section class="grafico">
+
+                <h3>ALUNOS CADASTRADOS</h3>
+
+                <div class="grafico-area">
+
                 </div>
 
-            </div>
+            </section>
 
-        </section>
+            <!-- RESUMO -->
+            <section class="resumo">
 
-    </main>
+                <div class="titulo">
+                    <h3>RESUMO ACADÊMICO</h3>
+                </div>
 
-</div>
+                <div class="cards">
 
-</body>
-</html>
+                    <div class="card">
+                        <h2>ADS</h2>
+                        <p>120 alunos</p>
+                    </div>
+
+                    <div class="card">
+                        <h2>Informática</h2>
+                        <p>120 alunos</p>
+                    </div>
+
+                    <div class="card">
+                        <h2>Ensino Médio</h2>
+                        <p>120 alunos</p>
+                    </div>
+
+                    <div class="card">
+                        <h2>Visitantes</h2>
+                        <p>120 alunos</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    </body>
+    </html>
