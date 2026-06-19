@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision Tech - Cadastro de Perfil</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="left-side">
+
+            <header>
+                <h1>SIRA</h1>
+
+                <nav>
+                    <a href="#">HOME</a>
+                    <a href="#">ABOUT US</a>
+                    <a href="#" class="active">CONTACT</a>
+                    <a href="{% url 'login' %}">LOG IN</a>
+                </nav>
+            </header>
+
+            <div class="login-box" style="width: 480px;">
+
+                <h2 style="font-size: 48px; margin-bottom: 20px;">Aviso de Cadastro ou Troca de senha</h2>
+                
+                <div class="mensagem-suporte" style="margin-bottom: 30px; line-height: 1.6; color: #333;">
+                    <p style="margin-bottom: 15px; font-size: 16px;">
+                        Para cadastrar o seu perfil ou trocar a senha no sistema, é necessário <strong>entrar em contato diretamente com a empresa</strong>.
+                    </p>
+                    <p style="font-size: 14px; color: #666;">
+                        Por motivos de segurança, a criação de novas contas é realizada exclusivamente pela nossa equipe administrativa.
+                    </p>
+                </div>
+
+                <div class="contatos-empresa" style="margin-bottom: 35px;">
+                    <div style="width:100%; padding:15px; margin-bottom:12px; border-radius:30px; border:1px solid #b48dd8; font-size:15px; color: #4b0f82; font-weight: bold; background: #fcf9ff;">
+                        📧 suporte@visiontech.com
+                    </div>
+                    <div style="width:100%; padding:15px; border-radius:30px; border:1px solid #b48dd8; font-size:15px; color: #4b0f82; font-weight: bold; background: #fcf9ff;">
+                        📞 (11) 99999-9999
+                    </div>
+                </div>
+
+                <a href="{% url 'login' %}" style="text-decoration: none;">
+                    <button type="button">
+                        Voltar para o Login
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="right-side">
+            <img
+                src="{% static 'img/estudante.png' %}"
+                alt="Estudante"
+            >
+        </div>
+
+    </div>
+
+</body>
+</html>

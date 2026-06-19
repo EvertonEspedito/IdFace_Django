@@ -1,0 +1,5 @@
+#superuser
+    ##name
+        -admin
+    ##pass
+        -12345

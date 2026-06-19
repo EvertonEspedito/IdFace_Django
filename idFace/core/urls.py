@@ -3,8 +3,9 @@ from django.urls import path
 from .views import(
 dashboard,
  login,
- cadastro,
- cadastro_aluno
+ cadastro_visitante,
+ cadastro_aluno,
+ cadastro_about
 )
 urlpatterns = [
 
@@ -14,6 +15,7 @@ urlpatterns = [
         name='dashboard'
     ),
     path('login/', login, name='login'),
-    path('cadastro/', cadastro, name='cadastro'),
+    path('cadastro-visitante/', cadastro_visitante, name='cadastro_visitante'),
     path('cadastro-aluno/', cadastro_aluno, name='cadastro_aluno'),
+    path('cadastro-about/', cadastro_about, name='cadastro_about'),
 ]

@@ -1,12 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vision Tech - Login</title>
+    <title>SIRA - Login</title>
 
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
@@ -45,7 +46,7 @@
 
                       
 
-                        <a href="#">
+                        <a href="{% url 'cadastro_about' %}">
                             ESQUECEU A SENHA?
                         </a>
 
@@ -57,7 +58,7 @@
 
                     <p>
                         ou
-                        <a href="cadastro.html">
+                        <a href="{% url 'cadastro_about' %}">
                             Cadastre-se
                         </a>
                     </p>
@@ -71,7 +72,7 @@
         <div class="right-side">
 
             <img
-                src="img/estudante.png"
+                src="{% static 'img/estudante.png' %}"
                 alt="Estudante"
             >
 
