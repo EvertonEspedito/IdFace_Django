@@ -1,1 +1,2 @@
 # IdFace_Django
+# dependencias
