@@ -1,0 +1,11 @@
+MODEL_NAME = "Facenet"
+
+LIMIAR = 0.75
+
+CACHE = 2
+
+CAMERA = 0
+
+CAMERA_NOME = "Entrada Principal"
+
+TEMPO_PRESENCA = 5

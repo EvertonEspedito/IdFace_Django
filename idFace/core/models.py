@@ -1,46 +1,72 @@
 from django.db import models
 
 
+from django.db import models
+
+
 class Pessoa(models.Model):
 
-    CARGOS = [
-        ("Aluno", "Aluno"),
-        ("Professor", "Professor"),
-        ("TAE", "TAE"),
-        ("Diretor", "Diretor"),
-        ("Gestor", "Gestor")
+    TIPOS = [
+        ('ALUNO', 'Aluno'),
+        ('VISITANTE', 'Visitante'),
     ]
 
-    matricula = models.CharField(
-        max_length=20,
-        unique=True
-    )
-
     nome = models.CharField(
-        max_length=100
+        max_length=200
     )
 
-    cargo = models.CharField(
+    tipo = models.CharField(
         max_length=20,
-        choices=CARGOS
+        choices=TIPOS
+    )
+
+    matricula = models.CharField(
+        max_length=30,
+        blank=True,
+        null=True
+    )
+
+    cpf = models.CharField(
+        max_length=14,
+        blank=True,
+        null=True
+    )
+
+    email = models.EmailField(
+        blank=True,
+        null=True
+    )
+
+    empresa = models.CharField(
+        max_length=150,
+        blank=True,
+        null=True
+    )
+
+    motivo_visita = models.CharField(
+        max_length=200,
+        blank=True,
+        null=True
     )
 
     foto = models.ImageField(
-        upload_to='rostos/'
-    )
-    
-    # embedding facial
-    embedding = models.JSONField(
-        null=True,
-        blank=True
+        upload_to="rostos/"
     )
 
-    criado_em = models.DateTimeField(
+    embedding = models.JSONField(
+        blank=True,
+        null=True
+    )
+
+    ativo = models.BooleanField(
+        default=True
+    )
+
+    data_cadastro = models.DateTimeField(
         auto_now_add=True
     )
 
     def __str__(self):
-
         return self.nome
     
 class Presenca(models.Model):
@@ -52,6 +78,15 @@ class Presenca(models.Model):
 
     data_hora = models.DateTimeField(
         auto_now_add=True
+    )
+
+    camera = models.CharField(
+        max_length=100,
+        default="Entrada Principal"
+    )
+
+    confianca = models.FloatField(
+        default=0
     )
 
     def __str__(self):
