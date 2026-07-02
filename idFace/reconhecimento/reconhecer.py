@@ -2,27 +2,24 @@ import cv2
 import numpy as np
 
 from deepface import DeepFace
-
-from core.models import Pessoa
-from core.models import Presenca
-
-from django.utils import timezone
-from datetime import timedelta
-
-from reconhecimento.antispoofing import (
-    AntiSpoofing
-)
-
-# ==========================
-# ANTI-SPOOFING
-# ==========================
-
-antiSpoofing = AntiSpoofing()
+import time
+from .camera import iniciar_camera
+from .detector import detectar
+from .comparador import comparar
+from .registro import registrar
 
 
 def reconhecer():
 
-    camera = cv2.VideoCapture(0)
+    camera = iniciar_camera()
+
+    ultimoReconhecimento = 0
+
+    ultimaPessoa = None
+
+    ultimaConfianca = 0
+
+    TEMPO_CACHE = 2
 
     while True:
 
@@ -31,143 +28,124 @@ def reconhecer():
         if not conectado:
             break
 
-        # ==========================
-        # VERIFICAR PISCADA
-        # ==========================
+        # Detecta os rostos
+        faces, cinza = detectar(frame)
+        agora = time.time()
 
-        real = antiSpoofing.verificarPiscada(
-            frame
-        )
+        for (x, y, w, h) in faces:
 
-        if not real:
+            # Adiciona uma pequena margem ao redor do rosto
+            margem = 20
 
-            cv2.putText(
-                frame,
-                "Pisque para autenticar",
-                (20, 100),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                1,
-                (0, 0, 255),
-                2
-            )
+            x1 = max(0, x - margem)
+            y1 = max(0, y - margem)
 
-            cv2.imshow(
-                "Reconhecimento",
-                frame
-            )
+            x2 = min(frame.shape[1], x + w + margem)
+            y2 = min(frame.shape[0], y + h + margem)
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+            rosto = frame[y1:y2, x1:x2]
 
-            continue
+            try:
 
-        try:
+                # Gera o embedding do rosto
+                if agora - ultimoReconhecimento > TEMPO_CACHE:
 
-            resultado = DeepFace.represent(
-                img_path=frame,
-                model_name='Facenet',
-                enforce_detection=False
-            )
+                    resultado = DeepFace.represent(
+                        img_path=rosto,
+                        model_name="Facenet",
+                        enforce_detection=False
+                    )
 
-            embeddingAtual = np.array(
-                resultado[0]["embedding"]
-            )
+                    embedding = np.array(
+                        resultado[0]["embedding"]
+                    )
 
-            pessoas = Pessoa.objects.exclude(
-                embedding=None
-            )
+                    pessoa, confianca = comparar(
+                        embedding
+                    )
 
-            for pessoa in pessoas:
+                    ultimoReconhecimento = agora
 
-                embeddingBanco = np.array(
-                    pessoa.embedding
+                    ultimaPessoa = pessoa
+
+                    ultimaConfianca = confianca
+
+                else:
+
+                    pessoa = ultimaPessoa
+
+                    confianca = ultimaConfianca
+
+                embedding = np.array(
+                    resultado[0]["embedding"]
                 )
 
-                distancia = np.linalg.norm(
-                    embeddingAtual - embeddingBanco
+                # Procura a pessoa no banco
+                pessoa, confianca = comparar(
+                    embedding
                 )
 
-                # ==========================
-                # LIMIAR
-                # ==========================
-
-                if distancia < 10:
+                if pessoa:
 
                     texto = (
                         f"{pessoa.nome} "
-                        f"- {pessoa.cargo}"
+                        f"({confianca:.1f}%)"
                     )
 
-                    cv2.putText(
-                        frame,
-                        texto,
-                        (20, 50),
-                        cv2.FONT_HERSHEY_SIMPLEX,
-                        1,
-                        (0, 255, 0),
-                        2
+                    cor = (0, 255, 0)
+
+                    registrou = registrar(
+                        pessoa,
+                        confianca
                     )
 
-                    # ==========================
-                    # REGISTRO TEMPORAL
-                    # ==========================
+                    if registrou:
+                        print(f"{pessoa.nome} entrou na instituição.")
 
-                    ultimaPresenca = (
-                        Presenca.objects
-                        .filter(pessoa=pessoa)
-                        .order_by('-data_hora')
-                        .first()
-                    )
+                else:
 
-                    registrar = False
+                    texto = "Desconhecido"
 
-                    # Nunca registrou
-                    if not ultimaPresenca:
+                    cor = (0, 0, 255)
 
-                        registrar = True
+            except Exception as erro:
 
-                    else:
+                print("Erro:", erro)
 
-                        agora = timezone.now()
+                texto = "Erro"
 
-                        diferenca = (
-                            agora -
-                            ultimaPresenca.data_hora
-                        )
+                cor = (0, 0, 255)
 
-                        # 5 minutos
-                        if diferenca > timedelta(minutes=5):
+            # Desenha o retângulo
+            cv2.rectangle(
+                frame,
+                (x, y),
+                (x + w, y + h),
+                cor,
+                2
+            )
 
-                            registrar = True
-
-                    # ==========================
-                    # SALVAR PRESENÇA
-                    # ==========================
-
-                    if registrar:
-
-                        Presenca.objects.create(
-                            pessoa=pessoa
-                        )
-
-                        print(
-                            f"Presença registrada:"
-                            f" {pessoa.nome}"
-                        )
-
-                    break
-
-        except Exception as erro:
-
-            print(erro)
+            # Escreve o nome
+            cv2.putText(
+                frame,
+                texto,
+                (x, y - 10),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.7,
+                cor,
+                2
+            )
 
         cv2.imshow(
-            "Reconhecimento",
+            "SIRA - Reconhecimento Facial",
             frame
         )
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        tecla = cv2.waitKey(1) & 0xFF
+
+        if tecla == ord("q"):
             break
 
     camera.release()
+
     cv2.destroyAllWindows()
