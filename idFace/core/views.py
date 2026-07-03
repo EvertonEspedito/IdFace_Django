@@ -89,56 +89,25 @@ def cadastro_aluno(request):
     if request.method == "POST":
 
         matricula = request.POST.get("matricula")
-
         nome = request.POST.get("nome")
-
         sobrenome = request.POST.get("sobrenome")
-
         email = request.POST.get("email")
 
-        foto = request.FILES.get("foto")
-
-        novaPessoa = Pessoa.objects.create(
-
+        Pessoa.objects.create(
             nome=f"{nome} {sobrenome}",
-
             tipo="ALUNO",
-
             matricula=matricula,
-
-            email=email,
-
-            foto=foto
-
+            email=email
         )
+
         messages.success(
             request,
             "Aluno cadastrado com sucesso!"
         )
-        try:
 
-            resultado = DeepFace.represent(
+        return redirect("cadastro_aluno")
 
-                img_path=novaPessoa.foto.path,
-
-                model_name="Facenet",
-
-                enforce_detection=True
-
-            )
-
-            novaPessoa.embedding = resultado[0]["embedding"]
-
-            novaPessoa.save()
-
-        except Exception as erro:
-                novaPessoa.delete()
-                messages.error(request,"Não foi possível identificar um rosto na foto enviada.")
-
-        return render(
-            request,
-            "cadastro_aluno.html"
-        )
+    return render(request, "cadastro_aluno.html")
 
 def cadastro_about(request):
     return render(request, 'cadastro_about.html')
