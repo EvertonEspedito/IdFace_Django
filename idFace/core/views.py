@@ -84,6 +84,7 @@ def sair(request):
 def cadastro_visitante(request):
     return render(request, 'cadastro_visitante.html')
 
+
 def cadastro_aluno(request):
 
     if request.method == "POST":
