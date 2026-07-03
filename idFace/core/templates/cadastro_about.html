@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vision Tech - Cadastro de Perfil</title>
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=10">
 </head>
 <body>
 
@@ -18,10 +18,11 @@
                 <h1>SIRA</h1>
 
                 <nav>
-                    <a href="#">HOME</a>
-                    <a href="#">ABOUT US</a>
-                    <a href="#" class="active">CONTACT</a>
-                    <a href="{% url 'login' %}">LOG IN</a>
+                    <nav>
+                    <a href="#">Home</a>
+                    <a href="#">Quem Somos</a>
+                    <a href="#">Contatos</a>
+                </nav>
                 </nav>
             </header>
 
@@ -59,9 +60,9 @@
 
         <div class="right-side">
             <img
-                src="{% static 'img/estudante.png' %}"
-                alt="Estudante"
-            >
+                src="{% static 'img/foto-visãocomputacional.jpg' %}"
+                alt="ilustração de um menino com reconhecimento facial"
+                class="img-visao">
         </div>
 
     </div>

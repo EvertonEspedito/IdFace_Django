@@ -19,3 +19,4 @@ urlpatterns = [
     path('cadastro-aluno/', cadastro_aluno, name='cadastro_aluno'),
     path('cadastro-about/', cadastro_about, name='cadastro_about'),
 ]
+
